@@ -12,12 +12,19 @@ using namespace std;
 class UserWithWallet : public User {
     private: 
         Wallet* wallet;
-        Transaction* transaction;
+        vector<Transaction*> transactions;
     public: 
     //Constructor
-        UserWithWallet(string, string, string, string);
-        void Trade(UserWithWallet* other, int point);
+        UserWithWallet();
+        Wallet* getWallet();
+        vector<Transaction*> getTransactions();
+        void setTransactions(vector<Transaction*> transactions);
+        void setWallet(Wallet* wallet);
+        void Trade(ifstream& ifs);
         bool isEqual(UserWithWallet* other); //Dùng để so sánh user
+        void writeToFile(ofstream& ofs);
+        void readFromFile(ifstream& ifs);
+        void showTransaction(ifstream& ifs);
 };
 
 #endif

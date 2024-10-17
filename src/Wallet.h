@@ -14,8 +14,8 @@ class Wallet {
         Wallet(string WalletID, int balance);
         void setWalletID(string walletID);
         void setBalance(int balance);
-        void getWalletID();
-        void getBalance();
+        string getWalletID();
+        int getBalance();
 };
 
 #endif

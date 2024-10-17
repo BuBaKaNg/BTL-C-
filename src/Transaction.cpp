@@ -2,9 +2,12 @@
 #include "Transaction.h"
 using namespace std;
 
-Transaction::Transaction(int id, string message){
+
+Transaction::Transaction(){}
+Transaction::Transaction(int id, string message, string userId){
     this->transactionId = id;
     this->message = message;
+    this->userId = userId;
 }
 
 void Transaction::setMessage(string message){
@@ -21,4 +24,24 @@ string Transaction::getMessage(){
 
 int Transaction::getTransactionId(){
     return this->transactionId;
+}
+
+void Transaction::setUserID(string userID){
+    this->userId = userID;
+}
+
+string Transaction::getUserID(){
+    return this->userId;
+}
+
+void Transaction::writeToFile(ofstream& ofs){
+    ofs << this->userId;
+    ofs << this->transactionId << "\n";
+    ofs << this->message;
+}
+
+void Transaction::readFromFile(ifstream& ifs){
+    ifs >> this->userId;
+    ifs >> this->transactionId;
+    getline(ifs, this->message);
 }

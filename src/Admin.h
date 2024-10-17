@@ -14,7 +14,7 @@ class Admin : public User {
         vector<UserWithWallet*> getUserWithWallet();
         void setUserWithWallet(vector<UserWithWallet*> listUser);
         
-        void showList(); 
+        void showList(ifstream& ifs); 
         void updateInforOfUser(User* user); 
         UserWithWallet createAccount(string account, string password, string email, string phoneNumber); 
 };

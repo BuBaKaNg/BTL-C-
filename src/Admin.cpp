@@ -10,3 +10,15 @@ void Admin::setUserWithWallet(vector<UserWithWallet*> listUser){
     this->listUser = listUser;
 }
 
+void Admin::showList(ifstream& ifs){
+    vector<UserWithWallet*> listUserWithWallet;
+    while(!ifs.eof()){
+        UserWithWallet* userWithWallet = new UserWithWallet();
+        userWithWallet->readFromFile(ifs);
+        listUserWithWallet.push_back(userWithWallet);
+    }
+    cout << "List User With Wallet:" << endl;
+    for(auto user : listUserWithWallet){
+        user->reviewInfor();
+    }
+}

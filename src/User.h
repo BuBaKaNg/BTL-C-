@@ -11,6 +11,7 @@ class User{
     private:
     // thuộc tính
         string userId;
+        string name;
         string accountName;
         string password;
         string email;
@@ -30,6 +31,7 @@ class User{
         void setRole(string role);
         void setUserId(string userId);
         void setMessage(string message);
+        void setName(string name);
         string getAccountName();
         string getPassword();
         string getEmail();
@@ -37,15 +39,16 @@ class User{
         string getRole();
         string getUserId();
         string getMessage();
+        string getName();
         //----------------------------------------------------------------        
         /*Thay đổi profile gồm 3 option
         1.đổi phone, 2. đổi email, 3. đổi email*/
-        void updateInfor(); 
-        void UpdateInfor();   
+        void updateInfor();   
         void writeToFile(ofstream &ostream);  
         void readFromFile(ifstream &istream); 
         void print();
-        void toString();
+        void modifyInfor(string option, string newInfor, string userId);
+        void reviewInfor();
 };
 
 #endif

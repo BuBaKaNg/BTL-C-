@@ -1,7 +1,6 @@
 #ifndef _ADMIN_
 #define _ADMIN_
 #include "myheader.h"
-#include "user_with_wallet.cpp"
 
 using namespace std;
 
@@ -33,6 +32,9 @@ class Admin : public User{
         getline(ifs, line);
         this->setPhoneNumber(line);
     }
+    //________________________________________________________________
+
+
     //GHI FILE =================================================================
     void writeToFile(ofstream& ofs){
         ofs << this->getUserId() << "\n";
@@ -44,10 +46,47 @@ class Admin : public User{
     }
     //________________________________________________________________________________________________________________________________
 
+
+    void showList(){
+        vector<UserWithWallet*> users = loadToUsers();
+        cout << "====================== LIST USERS ======================" << endl;
+        cout << endl;
+        for(auto user : users){
+            cout << "*****************************************" << endl;
+            cout << "User id : " << user->getUserId() << endl;
+            cout << "Name : " << user->getName() << endl;
+            cout << "Email : " << user->getEmail() << endl;
+            cout << "Phone number : " << user->getPhoneNumber() << endl; 
+            cout << "Wallet id : " << user->getWalletId() << endl;
+            cout << "Balance : " << user->getBalance() << endl;
+            cout << "******************************************" << endl;
+            cout << endl;
+        }
+    }
+
+    void updateInforOfUser(string userId){
+        vector<UserWithWallet*> users = loadToUsers();
+        for(auto user : users){
+            if(user->getUserId() == userId){
+                user->updateInfor();
+            }
+        }
+    }
+
+    UserWithWallet* createAccount(string account, string name, string password, string email, string phoneNumber, int amount){
+        /*hàm này tạo tài khoản cho khách hàng*/
+        string userId = generateUserId();
+        string walletId = generateWalletId();
+        UserWithWallet* user = new UserWithWallet(userId, account, name, password, email, phoneNumber, walletId, amount);
+        totalWallet->setRemainPoint(totalWallet->getRemainPoint() - amount);
+        return user;
+    }
+
     //TO STRING =================================================================
     string toString(){
         return User::toString();
     }
+    //________________________________________________________________
 };
 
 #endif

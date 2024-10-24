@@ -45,7 +45,6 @@ class UserWithWallet : public User{
         this->setEmail(line);
         getline(ifs, line);
         this->setPhoneNumber(line);
-        Wallet* wallet = new Wallet();
         getline(ifs, line);
         this->setWalletId(line);
         int balance;
@@ -80,5 +79,29 @@ class UserWithWallet : public User{
         cout << "Balance: " << this->getBalance() << endl;
     }
 
+    void trade(vector<UserWithWallet*> &users){
+        cout << "________________________________________________" << endl;
+        string walletId;
+        int amount;
+        cout << "Enter wallet ID you want to trade: ";
+        cin >> walletId;
+        cin.ignore();
+        cout << "Enter amount to trade: ";
+        cin >> amount;
+        cin.ignore();
+        for(auto user : users){
+            if(user->getWalletId() == walletId){
+                if(this->getBalance() >= amount){
+                    this->setBalance(this->getBalance() - amount);
+                    user->setBalance(user->getBalance() + amount);                    
+                }
+                else{
+                    cout << "Balance not enough" << endl;
+                }
+                return;
+            }
+        }
+        cout << "Wallet ID not found" << endl;
+    }
 };
 #endif 

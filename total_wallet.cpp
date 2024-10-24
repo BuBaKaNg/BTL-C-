@@ -7,7 +7,7 @@ class TotalWallet{
     private:
     //THUỘC TÍNH =================================================================
     int remainPoint;
-    int originPoint = 50000;
+    int originPoint;
     //________________________________________________________________
     public:
     //CONSTRUCTOR =================================================================
@@ -29,11 +29,6 @@ class TotalWallet{
         this->setRemainPoint(stoi(line));
     }
     //________________________________________________________________
-
-
-    /* IS AVAILABLE
-    - kiểm tra xem tổng số tiền trong ví có đúng với tiền đã được giả lập không hay có phát sinh không?
-    */
 };
 //__________________________________________________________________
 #endif

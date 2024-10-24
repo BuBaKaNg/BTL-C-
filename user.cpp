@@ -45,7 +45,45 @@ class User{
         cout << "Email: " << this->getEmail() << endl;
         cout << "Phone Number: " << this->getPhoneNumber() << endl;
     }
-    void updateInfo();
+    void updateInfor(){
+        /*Hàm này dùng để update infor người dùng và admin*/
+        while(1){
+            cout << "________________________________________________________________" << endl;
+            int option;
+            cout << "1. Update Name" << endl;
+            cout << "2. Update Email" << endl;
+            cout << "3. Update Phone Number" << endl;
+            cout << "4. Update Password" << endl;
+            cout << "0. Exit" << endl;
+            cout << "Choose option:";
+            cin >> option;
+            cin.ignore();
+            string new_infor;
+            if(option == 1){
+                cout << "Please enter your new name:";
+                getline(cin, new_infor);
+                this->setName(new_infor);
+            }
+            else if(option == 2){
+                cout << "Please enter your new email:";   
+                getline(cin, new_infor);         
+                this->setEmail(new_infor);
+            }
+            else if(option == 3){
+                cout << "Please enter your new phone number:"; 
+                getline(cin, new_infor);
+                this->setPhoneNumber(new_infor);
+            }
+            else if(option == 4){
+                cout << "Please enter your new password:"; 
+                getline(cin, new_infor);
+                this->setPassword(new_infor);
+            }
+            else if(option == 0){
+                return;
+            }
+        }
+    }
 
     //TO STRING =================================================================
     string toString(){
